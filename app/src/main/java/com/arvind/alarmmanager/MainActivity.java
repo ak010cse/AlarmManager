@@ -2,6 +2,7 @@ package com.arvind.alarmmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     AlarmManager alarmManager;
     PendingIntent alarmPendingIntent;
 
+    @SuppressLint("ShortAlarm")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

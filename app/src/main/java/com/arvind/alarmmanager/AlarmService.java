@@ -1,6 +1,7 @@
 package com.arvind.alarmmanager;
 
 import static com.arvind.alarmmanager.App.CHANNEL_ID;
+import static com.arvind.alarmmanager.MainActivity.ALARM_REQ_CODE;
 import static com.arvind.alarmmanager.MyReceiver.TITLE;
 
 import android.app.Notification;
