@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Alarm Manager</string>
+    <string name="stop_alarm">Stop Alarm</string>
+    <string name="stop">Stop</string>
+    <string name="snooze">Snooze</string>
+    <string name="start">Start</string>
+    <string name="enter_timing">Enter Timing</string>
+</resources>
