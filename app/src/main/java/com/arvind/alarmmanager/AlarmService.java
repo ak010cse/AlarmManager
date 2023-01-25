@@ -5,6 +5,8 @@ import static com.arvind.alarmmanager.MainActivity.ALARM_REQ_CODE;
 import static com.arvind.alarmmanager.MyReceiver.TITLE;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -35,16 +37,26 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Alarm Service Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(serviceChannel);
+            }
         Intent notificationIntent = new Intent(this, MainActivity.class);
         int pendingFlags;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
         } else {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
         }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, pendingFlags);
 
-        String alarmTitle = String.format("%s Alarm", intent.getStringExtra(TITLE));
+        String alarmTitle = String.format("Alarm Service Channel", intent.getStringExtra(TITLE));
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(alarmTitle)

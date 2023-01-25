@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
         Button mButtonFullStop = findViewById(R.id.btn_stop);
         Button mButtonStart = findViewById(R.id.btn_start);
 
+//        https://github.com/navczydev/SplashScreenAPISample/tree/foreground-service-restrictions
 //        https://www.sanfoundry.com/java-android-program-cancel-alarm-intent/
 //        https://github.com/learntodroid/SimpleAlarmClock
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         int pendingFlags;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
         } else {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent iBroadCast = new Intent(MainActivity.this, MyReceiver.class);
 
                 int pendingFlags;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
                 } else {
                     pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
-                    10000,
+                    0,
                     10000,
                     alarmPendingIntent
             );

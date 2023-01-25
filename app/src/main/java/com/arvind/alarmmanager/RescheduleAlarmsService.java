@@ -27,7 +27,7 @@ public class RescheduleAlarmsService extends LifecycleService {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         int pendingFlags;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
         } else {
             pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
